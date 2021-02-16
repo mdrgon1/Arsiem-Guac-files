@@ -1,0 +1,19 @@
+<user-mapping>
+    <authorize 
+            username="arsiem"
+            password="Arsiem2020!!"
+            encoding="md5">
+
+        <connection name="Ubuntu-Server">
+            <protocol>ssh</protocol>
+            <param name="hostname"></param>
+            <param name="port">22<param>
+            <param name="username">root</param>
+        </connection>
+        <connection name="Windows Server">
+            <protocol>rdp</protocol>
+            <param name="hostname"></param>
+            <param name="port">3389</param>
+        </connection>
+    </authorize>
+</user-mapping>
