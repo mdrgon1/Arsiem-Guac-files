@@ -7,7 +7,7 @@
         <connection name="Ubuntu-Server">
             <protocol>ssh</protocol>
             <param name="hostname"></param>
-            <param name="port">22<param>
+            <param name="port">22</param>
             <param name="username">root</param>
         </connection>
         <connection name="Windows Server">
