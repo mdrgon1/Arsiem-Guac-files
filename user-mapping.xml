@@ -2,7 +2,7 @@
     <authorize>
             username="arsiem"
             password="Arsiem2020!!"
-    </authorize>
+
 
         <connection name="Ubuntu-Server">
             <protocol>ssh</protocol>
@@ -15,4 +15,5 @@
             <param name="hostname"></param>
             <param name="port">3389</param>
         </connection>
+    </authorize>
 </user-mapping>
