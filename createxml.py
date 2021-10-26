@@ -52,3 +52,11 @@ if __name__ == '__main__':
 
     # PASS PARAMETER TO XSLT
     n = et.XSLT.strparam(ipdata[0])
+    result = transform(xml, new_ip=n)
+
+    print(result)
+
+
+    # SAVE XML TO FILE
+    with open('user-mapping.xml.xml', 'wb') as f:
+        f.write(result)
