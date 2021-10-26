@@ -58,5 +58,5 @@ if __name__ == '__main__':
 
 
     # SAVE XML TO FILE
-    with open('user-mapping.xml.xml', 'wb') as f:
+    with open('user-mapping.xml', 'wb') as f:
         f.write(result)
