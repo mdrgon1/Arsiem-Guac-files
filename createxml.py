@@ -20,24 +20,20 @@ if __name__ == '__main__':
             resourceGroupName = toParse['compute'][keyVal]
 
  
-    headerTxt = '<user-mapping>\n'
-    txt = '''
-                <authorize
-                        username="arsiem"
-                        password="Arsiem2020!!">
+    headerTxt = '''<user-mapping><authorize username="arsiem" password="Arsiem2020!!">'''
+    sshTxt = '''      
                     <connection name="Default-Server-SSH">
                         <protocol>ssh</protocol>
                         <param name="hostname"></param>
                         <param name="port">22</param>
                     </connection>
-                    <connection name="Default-Server-RDP">
+            '''
+    rdpTxt = '''<connection name="Default-Server-RDP">
                         <protocol>rdp</protocol>
                         <param name="hostname"></param>
-                    <param name="port">3389</param>
-                    </connection>
-                </authorize>
-            '''
-    closerTxt = '</user-mapping>'
+                        <param name="port">3389</param>
+                    </connection>'''
+    closerTxt = '''</authorize></user-mapping>'''
 
     result = headerTxt
     cwd = os.getcwd()
@@ -53,14 +49,23 @@ if __name__ == '__main__':
             name = newList[0].strip()
             ip = x[1]
             data = et.XSLT.strparam(ip.strip())
+            
+            # Windows doesn't allow SSH
+            if 'windows' not in ipdata[i]:
+                xml = et.fromstring(sshTxt.replace('Default', name))
+                xsl = et.parse('XSLTScript.xsl')
+                transform = et.XSLT(xsl)
+                # PASS PARAMETER TO XSLT            
+                result += str(transform(xml, new_ip=data))
 
-            xml = et.fromstring(txt.replace('Default', name))
+            xml = et.fromstring(rdpTxt.replace('Default', name))
             xsl = et.parse('XSLTScript.xsl')
             transform = et.XSLT(xsl)
-
             # PASS PARAMETER TO XSLT            
             result += str(transform(xml, new_ip=data))
+
     result += closerTxt
+    result = result.replace('<?xml version="1.0"?>', '')
     # SAVE XML TO FILE
     with open('user-mapping.xml', 'w') as f:
-        f.write(result)
+        f.write('<?xml version="1.0"?>\n' + result)
