@@ -32,6 +32,7 @@ if __name__ == '__main__':
                         <protocol>rdp</protocol>
                         <param name="hostname"></param>
                         <param name="port">3389</param>
+                        <param name="ignore-cert">true</param>
                     </connection>'''
     closerTxt = '''</authorize></user-mapping>'''
 
